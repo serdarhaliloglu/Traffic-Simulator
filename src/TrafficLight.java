@@ -12,10 +12,7 @@ import greenfoot.GreenfootImage;
 public class TrafficLight extends Actor {
 
   private Directions rotationDirection;
-  private int greenCounter=780; //yaklasik 15sn
-  private int yellowCounter=600;//yaklasik 10sn
-  private int redCounter=180; //yaklasik 3sn
-  private int lightCounter=0;
+  private int timer =0;
 
 
   public State state = State.GREEN;
@@ -83,25 +80,28 @@ public class TrafficLight extends Actor {
 
 
   @Override
-  public void act(){ //saniyede 60 defa
-    lightCounter++;
+  public void act(){
+    timer++;
     switch(state){
       case GREEN:
-        if (lightCounter == yellowCounter){
+        int yellowCounter = 600; //saniyede 60 defa
+        if (timer == yellowCounter){
           state = State.YELLOW;
-          setImageFromStateAndResetCounter();
+          setTrafficLightImage();
         }
         break;
       case YELLOW:
-        if (lightCounter == redCounter){
+        int redCounter = 180;
+        if (timer == redCounter){
           state = State.RED;
-          setImageFromStateAndResetCounter();
+          setTrafficLightImage();
         }
         break;
       case RED:
-        if (lightCounter == greenCounter){
+        int greenCounter = 780;
+        if (timer == greenCounter){
           state = State.GREEN;
-          setImageFromStateAndResetCounter();
+          setTrafficLightImage();
         }
         break;
     }
@@ -109,10 +109,10 @@ public class TrafficLight extends Actor {
   }
 
 
-  private void setImageFromStateAndResetCounter() {
+  private void setTrafficLightImage() {
     GreenfootImage image = new GreenfootImage(state.imgPath);
     setImage(image);
-    lightCounter = 0;
+    timer = 0;
   }
 
   public Direction getDirection(){
