@@ -2,7 +2,7 @@ import java.util.Random;
 import greenfoot.Actor;
 import greenfoot.GreenfootImage;
 
-public class Car extends Actor implements TrafficLightSensor{
+public class Car extends Actor{
 
 	private static String[] carImgPath = {"images/topCarBlue.png", "images/topCarPurple.png",
 			"images/topCarYellow.png","images/topCarRed.png"};
